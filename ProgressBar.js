@@ -45,7 +45,7 @@ export const ProgressBarContainer = () => {
                 <button onClick={() => setProgress(percentRange >0 ?
                     percentRange - 20 : 0)}>Decrease
                 </button>
-                <button onClick={() => setProgress(percentRange < 100 ? percentRange + 20 : 100)}>Increase</button>
+                <button onClick={() => setProgress(percentRange + 20)}>Increase</button>
                 <button onClick={() => setProgress(0)}>Reset</button>
             </div>
         </div>
