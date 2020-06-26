@@ -17,6 +17,17 @@ const ProgressBar = (props) => {
     );
 };
 
+fetch('http://pb-api.herokuapp.com/bars')
+  .then(response => response.json())
+  .then((jsonData) => {
+    // jsonData is parsed json object received from url
+    console.log(jsonData)
+  })
+  .catch((error) => {
+    // handle your errors here
+    console.error(error)
+  })
+
 export const ProgressBarContainer = () => {
     let [percentRange, setProgress] = useState(40);
     const dropdownlist = ["item1", "item2", "item3"]

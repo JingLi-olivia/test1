@@ -30,6 +30,7 @@
 }
 
 .progress-bar {
+    overflow: hidden;
     width:90%;
     height:30px;
     position:relative;
