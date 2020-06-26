@@ -20,8 +20,9 @@ const ProgressBar = (props) => {
 fetch('http://pb-api.herokuapp.com/bars')
   .then(response => response.json())
   .then((jsonData) => {
+      
     // jsonData is parsed json object received from url
-    console.log(jsonData)
+    console.log( jsonData )
   })
   .catch((error) => {
     // handle your errors here
