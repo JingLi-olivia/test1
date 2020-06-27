@@ -18,7 +18,7 @@ const ProgressBar = (props) => {
 };
 
 export const ProgressBarContainer = () => {
-    let [percentRange, setProgress] = useState(30);
+    let [percentRange, setProgress] = useState(40);
     const dropdownlist = ["item1", "item2", "item3"]
 
     return (
