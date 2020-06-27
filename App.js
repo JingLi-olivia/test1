@@ -44,7 +44,7 @@ class App extends Component {
                     ))}
                 </select>
                 <div className="limit">
-                    <h5 className="limit-title">{this.state.limit}</h5>
+                    <h5 className="limit-title">limit: {this.state.limit}</h5>
                 </div>
             </div>
         );
