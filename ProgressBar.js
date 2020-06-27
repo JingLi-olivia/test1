@@ -12,17 +12,21 @@ const ProgressBar = (props) => {
     return (
         <div className="progress-bar">
             <Range percentRange={props.percentRange}/>
-            <span class='progressbar-label'>{Math.round(props.percentRange)}%</span>
+            <span className='progressbar-label'>{Math.round(props.percentRange)}%</span>
         </div>
     );
 };
 
+const initButtonsData = [];
+const initBarsData = [];
+const initlimit = 0;
 fetch('http://pb-api.herokuapp.com/bars')
   .then(response => response.json())
   .then((jsonData) => {
       
     // jsonData is parsed json object received from url
-    console.log( jsonData )
+    initButtonsData.push(jsonData.buttons);
+    initBarsData.push(jsonData.bars);
   })
   .catch((error) => {
     // handle your errors here
