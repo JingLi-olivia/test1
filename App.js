@@ -30,7 +30,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                {/* <ProgressBarContainer/> */}
+                <ProgressBarContainer/>
 
                 <h1>My Todos</h1>
                 {this.state.buttons.map((button) => (
@@ -38,11 +38,11 @@ class App extends Component {
                     <h5 className="button-title">{button}</h5>
                 </div>
                 ))}
-                {this.state.bars.map((bar) => (
-                <div className="bars">
-                    <h5 className="bar-title">{bar}</h5>
-                </div>
-                ))}
+                <select>
+                    {this.state.bars.map((bar) => (
+                        <option value="{bar}">{bar}</option>
+                    ))}
+                </select>
                 <div className="limit">
                     <h5 className="limit-title">{this.state.limit}</h5>
                 </div>
