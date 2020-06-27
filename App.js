@@ -10,7 +10,7 @@ class App extends Component {
         bars: [],
         limit: []
     }
-    componentDidMount() {
+    componentWillMount() {
         fetch('http://pb-api.herokuapp.com/bars')
         // fetch('http://jsonplaceholder.typicode.com/todos')
         .then(res => res.json())
@@ -30,7 +30,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <ProgressBarContainer/>
+                <ProgressBarContainer buttons={this.state.buttons} bars={this.state.buttons} limit={this.state.limit} />
 
                 <h1>My Todos</h1>
                 {this.state.buttons.map((button) => (

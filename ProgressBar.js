@@ -17,23 +17,11 @@ const ProgressBar = (props) => {
     );
 };
 
-const initButtonsData = [];
-const initBarsData = [];
-const initlimit = 0;
-fetch('http://pb-api.herokuapp.com/bars')
-  .then(response => response.json())
-  .then((jsonData) => {
-      
-    // jsonData is parsed json object received from url
-    initButtonsData.push(jsonData.buttons);
-    initBarsData.push(jsonData.bars);
-  })
-  .catch((error) => {
-    // handle your errors here
-    console.error(error)
-  })
+export const ProgressBarContainer = (props) => {
+    console.log('buttons are: ', props.buttons);
+    console.log('bars are: ', props.bars);
+    console.log('limit are: ', props.limit);
 
-export const ProgressBarContainer = () => {
     let [percentRange, setProgress] = useState(40);
     const dropdownlist = ["item1", "item2", "item3"]
 
