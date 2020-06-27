@@ -30,7 +30,7 @@ class App extends Component {
     render() {
         return (
             <div className="App">
-                <ProgressBarContainer buttons={this.state.buttons} bars={this.state.buttons} limit={this.state.limit} />
+                <ProgressBarContainer buttons={this.state.buttons} bars={this.state.bars} limit={this.state.limit} />
 
                 <h1>My Todos</h1>
                 {this.state.buttons.map((button) => (
