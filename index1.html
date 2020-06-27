@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang='en-GB'>
+    <head>
+        <meta charset='utf-8'>
+		<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+        <title>Progress Bars Demo</title>
+        <link rel="stylesheet" href="css/main.css" />
+    </head>
+
+    <body>
+		<div class='demo-page'>
+			<h1>Progress Bars Demo</h1>
+		</div>
+		<div class='progressbar-body'>
+			<span class='progressbar-value {{ value < 100 ? "halfRound" : ( value > 100 ? "allRound warning": "allRound" ) }}' 
+				style='width:{{ value < 100 ? value : 100 }}%;'><span></span></span>
+			<span class='progressbar-label'>{{Math.round(value)}}%</span>
+		</div>
+		<div class='control-panel'>
+
+			<div class='button-panel'>
+				<button on-tap='decrement:25' on-press='continueDecrement:25'>-25</button>
+				<button on-tap='decrement:10' on-press='continueDecrement:10'>-10</button>
+				<button on-tap='increment:10' on-press='continueIncrement:10'>+10</button>
+				<button on-tap='increment:25' on-press='continueIncrement:25'>+25</button>
+			</div>
+		</div>
+        <script src='js/lib/jquery-3.0.0.min.js'></script>
+		<script src="path/to/vanilla.js"></script>
+		
+
+		
+	</body>
+</html>
+© 2020 GitHub, Inc.
