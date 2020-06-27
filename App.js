@@ -34,12 +34,18 @@ class App extends Component {
 
                 <h1>My Todos</h1>
                 {this.state.buttons.map((button) => (
-                <div className="card">
-                    <div className="card-body">
-                    <h5 className="card-title">{button[0]}</h5>
-                    </div>
+                <div className="buttons">
+                    <h5 className="button-title">{button}</h5>
                 </div>
                 ))}
+                {this.state.bars.map((bar) => (
+                <div className="bars">
+                    <h5 className="bar-title">{bar}</h5>
+                </div>
+                ))}
+                <div className="limit">
+                    <h5 className="limit-title">{this.state.limit}</h5>
+                </div>
             </div>
         );
     }
