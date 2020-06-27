@@ -10,45 +10,37 @@ const Range = (props) => {
 };
 
 const ProgressBar = (props) => {
+    let className = 'progress-bar';
+    if (props.order === props.currentBar) {
+        className += ' bar-active';
+    }
     return (
-        <div className="progress-bar">
+        <div className={className}>
             <Range percentRange={props.percentRange}/>
             <span className='progressbar-label'>{Math.round(props.percentRange)}%</span>
         </div>
     );
 };
-
-export const ProgressBarContainer = (props) => {
-    console.log('buttons are: ', props.buttons);
-    console.log('bars are: ', props.bars);
-    console.log('limit are: ', props.limit);
-
-    var selectorArr=[];
-
-    console.log(props.bars.length);
-    for (var i = 1; i <= props.bars.length; i++) { 
-        var name= "progress bar "+i;
-        var obj = {
-            "name": name,
-            "value": props.bars[i-1]
-         }
-         selectorArr.push(obj);
- 
+class ProgressBarContainer extends React.Component {
+    componentWillReceiveProps(nextProps) {
+		// Any time props.bars changes, update state.
+        this.setState({
+			bars:nextProps.bars
+		});
     }
-    
-console.log(props.bars);
-
-    let [percentRange, setProgress] = useState([10,20,100]);
-    let [selectorState, setSelectorState] = useState(0);
-  
-    console.log(percentRange);
-    function updateprogressbar(val) {
-        console.log("*************************");
-        var newVal = percentRange[selectorState]+val;
+    constructor(props) {
+        super(props);
+        this.state = {
+            bars: props.bars,
+            currentBar: 0
+        };
+    }
+    updateprogressbar(val) {
+        var newVal = this.state.bars[this.state.currentBar] + val;
         var f =0;
         if(newVal >=0){
-            if(newVal >props.limit){
-                f= props.limit;
+            if(newVal >this.props.limit){
+                f= this.props.limit;
             }else{
                 f= newVal;
             }
@@ -57,29 +49,38 @@ console.log(props.bars);
             f=0
         }
         
-        percentRange[selectorState] = f;
-        setProgress([...percentRange]);
-      }
+		var bars=this.state.bars;
+		bars[this.state.currentBar]=f;
+		this.setState({bars});
+    }
+    setSelectorState(val) {
+        this.setState({currentBar: val * 1})
+    }
 
-    return (
-        <div className="container">
-                {percentRange.map((val) => (
-                        <div className="container">
-                            <ProgressBar percentRange={val}/>
-                        </div>
-                    ))}     
+    render() {
+        return (
+            <div className="container">
 
-            <div className="toggle-buttons">
-                <select value={selectorState} onChange={e=>setSelectorState(e.target.value)}>
-                    {selectorArr.map((option,index) => (
-                        <option value={index}>{option.name}</option>
+                <div className="container">
+                    {this.state.bars.map((val, index) => (
+                        <ProgressBar key={index} order={index} currentBar = {this.state.currentBar} percentRange={val}/>
+                        
                     ))}
-                </select>
-                {props.buttons.map((val) => (
-                    <button onClick={() => updateprogressbar(val)}>{val}
-                    </button>
-                ))}
+                </div>
+
+                <div className="toggle-buttons">
+                    <select value={this.state.currentBar} onChange={e=>this.setSelectorState(e.target.value)}>
+                        {this.props.bars.map((option,index) => (
+                            <option key={index} value={index}>progress bar {index + 1}</option>
+                        ))}
+                    </select>
+                    {this.props.buttons.map((val, index) => (
+                        <button key={index} onClick={() => this.updateprogressbar(val)}>{val}
+                        </button>
+                    ))}
+                </div>
             </div>
-        </div>
-    );
-};
+        );
+    }
+}
+export default ProgressBarContainer;

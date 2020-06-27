@@ -46,6 +46,9 @@
     -moz-box-shadow:0 0 -1px 1px rgba(255,255,255,0.3);
     box-shadow:0 0 -1px 1px rgba(255,255,255,0.3)
 }
+.progress-bar.bar-active {
+    border: 5px solid red;
+}
 .progressbar-value {
     height:100%;
     display:block;
