@@ -27,14 +27,24 @@ export const ProgressBarContainer = (props) => {
 
     return (
         <div className="container">
-            <ProgressBar percentRange={percentRange}/>
+                {props.bars.map((val) => (
+                        <div className="container">
+                            <ProgressBar percentRange={val}/>
+                        </div>
+                    ))}     
 
             <div className="toggle-buttons">
                 <select>
+                {props.bars.map((val) => (
                     <option value="Luke Skywalker">Luke Skywalker</option>
-                    <option value="C-3PO">C-3PO</option>
-                    <option value="R2-D2">R2-D2</option>
+
+                ))}
                 </select>
+                {props.buttons.map((val) => (
+                            <button onClick={() => setProgress(percentRange >0 ?
+                                percentRange - val : 0)}>{val}
+                            </button>
+                        ))}
                 <button onClick={() => setProgress(percentRange >0 ?
                     percentRange - 20 : 0)}>Decrease
                 </button>
