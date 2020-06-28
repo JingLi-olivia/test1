@@ -18,6 +18,7 @@ const ProgressBar = (props) => {
     );
 };
 
+
 export const ProgressBarContainer = (props) => {
     console.log('buttons are: ', props.buttons);
     console.log('bars are: ', props.bars);
@@ -45,7 +46,8 @@ console.log(props.bars);
     function updateprogressbar(val) {
         console.log("*************************");
         var newVal = percentRange[selectorState]+val;
-        var f =0;
+        var f =newVal>props.limit?props.limit:newVal>0?newVal:0;
+        alert(f);
         if(newVal >=0){
             if(newVal >props.limit){
                 f= props.limit;
@@ -62,24 +64,31 @@ console.log(props.bars);
       }
 
     return (
-        <div className="container">
+        <div class='demo-page'>
+            <h1>Progress Bars Demo</h1>
+            <div className="container">
+
                 {percentRange.map((val) => (
                         <div className="container">
                             <ProgressBar percentRange={val}/>
                         </div>
                     ))}     
 
-            <div className="toggle-buttons">
-                <select value={selectorState} onChange={e=>setSelectorState(e.target.value)}>
-                    {selectorArr.map((option,index) => (
-                        <option value={index}>{option.name}</option>
+                <div className="toggle-buttons">
+                    <select  value={selectorState} onChange={e=>setSelectorState(e.target.value)}>
+                        {selectorArr.map((option,index) => (
+                            <option value={index}>{option.name}</option>
+                        ))}
+                    </select>
+                    {props.buttons.map((val) => (
+                        <button onClick={() => updateprogressbar(val)}>{val}
+                        </button>
                     ))}
-                </select>
-                {props.buttons.map((val) => (
-                    <button onClick={() => updateprogressbar(val)}>{val}
-                    </button>
-                ))}
+                </div>
             </div>
+            	    <button id='test-button' onclick='runTest()' class='test-button'>Run test</button>
+
         </div>
+        
     );
 };

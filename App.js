@@ -29,23 +29,9 @@ class App extends Component {
     }
     render() {
         return (
+
             <div className="App">
                 <ProgressBarContainer buttons={this.state.buttons} bars={this.state.bars} limit={this.state.limit} />
-
-                <h1>My Todos</h1>
-                {this.state.buttons.map((button) => (
-                <div className="buttons">
-                    <h5 className="button-title">{button}</h5>
-                </div>
-                ))}
-                <select>
-                    {this.state.bars.map((bar) => (
-                        <option value="{bar}">{bar}</option>
-                    ))}
-                </select>
-                <div className="limit">
-                    <h5 className="limit-title">limit: {this.state.limit}</h5>
-                </div>
             </div>
         );
     }
