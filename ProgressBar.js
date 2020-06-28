@@ -40,12 +40,8 @@ console.log(selectorArr);
   
     console.log(percentRange);
     function updateprogressbar(val) {
-        console.log("***********************");
-        console.log(percentRange[selectorState] );
         percentRange[selectorState] = percentRange[selectorState]+val;
-        console.log(percentRange[selectorState] );
-        setProgress([50,20,30]);
-        console.log(percentRange);
+        setProgress([...percentRange]);
       }
 
     return (
