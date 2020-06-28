@@ -35,12 +35,22 @@ export const ProgressBarContainer = (props) => {
  
     }
 console.log(selectorArr);
-    let [percentRange, setProgress] = useState(props.buttons);
+    let [percentRange, setProgress] = useState([10,20,30]);
     let [selectorState, setSelectorState] = useState(0);
+  
+    console.log(percentRange);
+    function updateprogressbar(val) {
+        console.log("***********************");
+        console.log(percentRange[selectorState] );
+        percentRange[selectorState] = percentRange[selectorState]+val;
+        console.log(percentRange[selectorState] );
+        setProgress([50,20,30]);
+        console.log(percentRange);
+      }
 
     return (
         <div className="container">
-                {props.bars.map((val) => (
+                {percentRange.map((val) => (
                         <div className="container">
                             <ProgressBar percentRange={val}/>
                         </div>
@@ -53,8 +63,7 @@ console.log(selectorArr);
                     ))}
                 </select>
                 {props.buttons.map((val) => (
-                    <button onClick={() => setProgress(percentRange >0 ?
-                        percentRange - val : 0)}>{val}
+                    <button onClick={() => updateprogressbar(val)}>{val}
                     </button>
                 ))}
                 <button onClick={() => setProgress(percentRange >0 ?
