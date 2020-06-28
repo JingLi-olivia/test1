@@ -3,7 +3,8 @@ import './progress-bar.css';
 
 const Range = (props) => {
     return (
-        <div className="progressbar-value " style={{width: `${props.percentRange}%`}}>
+        <div className={`progressbar-value ${props.percentRange<=100 ? "" : "warning"}`}
+        style={{width: `${props.percentRange}%`}}>
         </div>
     );
 };
@@ -34,13 +35,29 @@ export const ProgressBarContainer = (props) => {
          selectorArr.push(obj);
  
     }
-console.log(selectorArr);
-    let [percentRange, setProgress] = useState([10,20,30]);
+    
+console.log(props.bars);
+
+    let [percentRange, setProgress] = useState([10,20,100]);
     let [selectorState, setSelectorState] = useState(0);
   
     console.log(percentRange);
     function updateprogressbar(val) {
-        percentRange[selectorState] = percentRange[selectorState]+val;
+        console.log("*************************");
+        var newVal = percentRange[selectorState]+val;
+        var f =0;
+        if(newVal >=0){
+            if(newVal >props.limit){
+                f= props.limit;
+            }else{
+                f= newVal;
+            }
+        }
+        else{
+            f=0
+        }
+        
+        percentRange[selectorState] = f;
         setProgress([...percentRange]);
       }
 
