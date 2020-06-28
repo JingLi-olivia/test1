@@ -4,7 +4,7 @@ import './progress-bar.css';
 const Range = (props) => {
     return (
         <div className={`progressbar-value ${props.percentRange<=100 ? "" : "warning"}`}
-        style={{width: `${props.percentRange}%`}}>
+        style={{width: `${props.percentRange<=100 ? props.percentRange : 100}%`}}>
         </div>
     );
 };
