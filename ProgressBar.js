@@ -79,11 +79,6 @@ console.log(props.bars);
                     <button onClick={() => updateprogressbar(val)}>{val}
                     </button>
                 ))}
-                <button onClick={() => setProgress(percentRange >0 ?
-                    percentRange - 20 : 0)}>Decrease
-                </button>
-                <button onClick={() => setProgress(percentRange + 20)}>Increase</button>
-                <button onClick={() => setProgress(0)}>Reset</button>
             </div>
         </div>
     );
