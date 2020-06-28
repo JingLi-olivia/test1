@@ -22,8 +22,21 @@ export const ProgressBarContainer = (props) => {
     console.log('bars are: ', props.bars);
     console.log('limit are: ', props.limit);
 
-    let [percentRange, setProgress] = useState(40);
-    const dropdownlist = ["item1", "item2", "item3"]
+    var selectorArr=[];
+
+    console.log(props.bars.length);
+    for (var i = 1; i <= props.bars.length; i++) { 
+        var name= "progress bar "+i;
+        var obj = {
+            "name": name,
+            "value": props.bars[i-1]
+         }
+         selectorArr.push(obj);
+ 
+    }
+console.log(selectorArr);
+    let [percentRange, setProgress] = useState(props.buttons);
+    let [selectorState, setSelectorState] = useState(0);
 
     return (
         <div className="container">
@@ -34,17 +47,16 @@ export const ProgressBarContainer = (props) => {
                     ))}     
 
             <div className="toggle-buttons">
-                <select>
-                {props.bars.map((val) => (
-                    <option value="Luke Skywalker">Luke Skywalker</option>
-
-                ))}
+                <select value={selectorState} onChange={e=>setSelectorState(e.target.value)}>
+                    {selectorArr.map((option,index) => (
+                        <option value={index}>{option.name}</option>
+                    ))}
                 </select>
                 {props.buttons.map((val) => (
-                            <button onClick={() => setProgress(percentRange >0 ?
-                                percentRange - val : 0)}>{val}
-                            </button>
-                        ))}
+                    <button onClick={() => setProgress(percentRange >0 ?
+                        percentRange - val : 0)}>{val}
+                    </button>
+                ))}
                 <button onClick={() => setProgress(percentRange >0 ?
                     percentRange - 20 : 0)}>Decrease
                 </button>
