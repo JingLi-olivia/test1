@@ -21,6 +21,7 @@ const ProgressBar = (props) => {
         </div>
     );
 };
+
 class ProgressBarContainer extends React.Component {
     componentWillReceiveProps(nextProps) {
 		// Any time props.bars changes, update state.
@@ -59,26 +60,29 @@ class ProgressBarContainer extends React.Component {
 
     render() {
         return (
-            <div className="container">
+            <div class='demo-page'>
+                <h1>Progress Bars Demo</h1>
 
                 <div className="container">
-                    {this.state.bars.map((val, index) => (
-                        <ProgressBar key={index} order={index} currentBar = {this.state.currentBar} percentRange={val}/>
-                        
-                    ))}
+
+                        {this.state.bars.map((val, index) => (
+                            <ProgressBar key={index} order={index} currentBar = {this.state.currentBar} percentRange={val}/>
+                            
+                        ))}
+
+                    <div className="toggle-buttons">
+                        <select value={this.state.currentBar} onChange={e=>this.setSelectorState(e.target.value)}>
+                            {this.props.bars.map((option,index) => (
+                                <option key={index} value={index}>progress bar {index + 1}</option>
+                            ))}
+                        </select>
+                        {this.props.buttons.map((val, index) => (
+                            <button key={index} onClick={() => this.updateprogressbar(val)}>{val}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
-                <div className="toggle-buttons">
-                    <select value={this.state.currentBar} onChange={e=>this.setSelectorState(e.target.value)}>
-                        {this.props.bars.map((option,index) => (
-                            <option key={index} value={index}>progress bar {index + 1}</option>
-                        ))}
-                    </select>
-                    {this.props.buttons.map((val, index) => (
-                        <button key={index} onClick={() => this.updateprogressbar(val)}>{val}
-                        </button>
-                    ))}
-                </div>
             </div>
         );
     }
